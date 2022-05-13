@@ -1,43 +1,41 @@
 import './style.css'
-import createLayout from './layoutCreation'
+import createLayout from './layoutCreator'
 
 const contentCreator = (() => {
-    const content = document.querySelector('#content');
+    const body = document.querySelector('body');
 
-    const createHeader = () => {
-        const header = document.createElement('h1');
-        header.textContent = 'All Projects(inside this machine)';
-        header.classList.add('center');
-        return header
-    }
+    
 
-    const createNavbar = () => {
-        // todo: a bar for navigation across website => index & contact & about
-    }
+
 
     const createProjects = () => {
         // todo: create a new project
+        // CREATION OBJECT
     }
 
     const createTodos = () => {
         // todo: create new todos for a project
+        // CREATION OBJECT
     }
 
     const createConstructionTools = () => {
         // todo: create 2 things => creating project & creating todos
+        // CREATION OBJECT
     }
 
     const retrieveProjects = () => {
         // todo: retrieve all projects in localstorage IF there is at least one
+        // RETREIVE OBJECT
     }
 
     const retrieveTodos = () => {
         // todo: retrieve all todos of a project in localstorage IF there is at least one
+        // RETREIVE OBJECT
     }
 
     const createContent = () => {
-        const header = createHeader();
-        content.appendChild(header);
+        
+        body.appendChild(createLayout())
     }
 
     return { createContent }
