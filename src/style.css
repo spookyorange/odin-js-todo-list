@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.navbarList {
+    margin-top: 36px;
+    margin-bottom: 36px;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 24px; 
+}
+
+.contactContent h2 {
+    margin-top: 36px;
+    margin-bottom: 36px;
+}
+
+.aboutContent p {
+    margin-top: 48px;
+}
