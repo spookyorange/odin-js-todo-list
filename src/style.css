@@ -25,3 +25,12 @@
 .aboutContent p {
     margin-top: 48px;
 }
+
+.project-creator {
+    margin-top: 36px;
+    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
