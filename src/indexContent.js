@@ -1,4 +1,5 @@
 import createProject from './creationToolCreator';
+import { makeProjectDiv } from './createContent';
 
 const indexContentCreator = (() => {
   const createHeader = () => {
@@ -10,6 +11,12 @@ const indexContentCreator = (() => {
 
   const projectsArea = () => {
     const area = document.createElement('div');
+    if (localStorage.getItem('projects')) {
+      const projects = JSON.parse(localStorage.getItem('projects'));
+      projects.forEach(project => {
+        area.appendChild(makeProjectDiv(project))
+      });
+    }
     area.classList.add('projects-area');
 
     return area

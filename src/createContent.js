@@ -1,6 +1,22 @@
 const contentCreator = (() => {
 
   const createProject = (projectName) => {
+    const newProject = makeProject(projectName);
+    if (localStorage.getItem('projects')) {
+      const projects = JSON.parse(localStorage.getItem('projects'))
+      projects.push(newProject)
+      localStorage.setItem('projects', JSON.stringify(projects))
+    }
+    else {
+      const projects = []
+      projects.push(newProject)
+      localStorage.setItem('projects', JSON.stringify(projects))
+    }
+
+    return newProject
+  }
+
+  const makeProject = (projectName) => {
     return {
       projectHeader: `${projectName}`
     }
