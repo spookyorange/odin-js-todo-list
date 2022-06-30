@@ -18,13 +18,15 @@ const contentCreator = (() => {
 
   const makeProject = (projectName) => {
     return {
-      projectHeader: `${projectName}`
+      projectHeader: `${projectName}`,
+      toDos: []
     }
   }
 
-  const makeProjectDiv = (project) => {
+  const makeProjectDiv = (project, i) => {
     const theDiv = document.createElement('div');
     theDiv.classList.add('project-div');
+    theDiv.dataset.index = i
     const theHeader = document.createElement('h3');
     theHeader.classList.add('project-header');
     theHeader.textContent = `${project.projectHeader}`
@@ -44,6 +46,6 @@ export function projectFactory(projectName) {
   return contentCreator.createProject(projectName)
 }
 
-export function makeProjectDiv(project) {
-  return contentCreator.makeProjectDiv(project)
+export function makeProjectDiv(project, i) {
+  return contentCreator.makeProjectDiv(project, i)
 }

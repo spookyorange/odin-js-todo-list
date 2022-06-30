@@ -13,8 +13,19 @@ const indexContentCreator = (() => {
     const area = document.createElement('div');
     if (localStorage.getItem('projects')) {
       const projects = JSON.parse(localStorage.getItem('projects'));
+      let i = 0
       projects.forEach(project => {
-        area.appendChild(makeProjectDiv(project))
+        area.appendChild(makeProjectDiv(project, i))
+        if (projects[i].toDos.length > 0) {
+          let f = 0
+          while (projects[i].toDos.length > f) {
+            let haha = document.createElement('p')
+            haha.textContent = projects[i].toDos[f] 
+            area.appendChild(haha)
+            f += 1
+          }
+        }
+        i += 1
       });
     }
     area.classList.add('projects-area');
