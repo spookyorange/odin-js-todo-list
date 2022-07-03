@@ -6,6 +6,7 @@ import createAboutContent from './aboutContent';
 const layoutController = (() => {
     const content = document.querySelector('#content');
     const currentLayout = document.createElement('div');
+    currentLayout.classList.add('current-layout');
 
     const killContent = () => {
         let i = 0
@@ -83,9 +84,13 @@ const layoutController = (() => {
         return content
     }
 
-    return { createLayout }
+    return { createLayout, generateIndexContent }
 })()
 
-export default function createLayout(){
+export function createLayout(){
     return layoutController.createLayout();
+}
+
+export function createIndex(){
+    return layoutController.generateIndexContent();
 }

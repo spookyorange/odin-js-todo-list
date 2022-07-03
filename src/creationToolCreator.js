@@ -1,5 +1,6 @@
 import './style.css'
-import { projectFactory, makeProjectDiv } from './createContent';
+import { projectFactory, makeProjectDiv, todoFactory, makeTodoDiv } from './createContent';
+import { createIndex } from './layoutCreator';
 
 const creationToolCreator = (() => {
 
@@ -25,10 +26,8 @@ const creationToolCreator = (() => {
         return;
       }
       const projectName = projectNameInput.value;
-      projectNameInput.value = '';
-      const project = projectFactory(projectName);
-      const projectsArea = document.querySelector('.projects-area')
-      projectsArea.appendChild(makeProjectDiv(project))
+      projectFactory(projectName);
+      resetIndexLayout();
     })
 
     projectCreator.appendChild(projectNameLabel);
@@ -40,15 +39,71 @@ const creationToolCreator = (() => {
     
   }
   
-  
-  const createTodo = () => {
-    // todo: create new todos for a project
-    // CREATION OBJECT
+  const resetIndexLayout = () => {
+    let currentLayout = document.querySelector('.current-layout')
+    let i = 0
+    while (i < currentLayout.children.length) {
+        currentLayout.children[i].remove();
+        i+=1;
+    }
+    currentLayout.appendChild(createIndex())
   }
 
-  return { projectCreator }
+
+  const todoCreator = (projectIndex) => {
+    let newTodoCreator = document.createElement('div');
+    newTodoCreator.classList.add('todo-creator')
+
+    let form = document.createElement('form');
+    let aboutLabel = document.createElement('label');
+    let aboutInput = document.createElement('input');
+    aboutLabel.textContent = 'To-Do'
+    let dueDateLabel = document.createElement('label');
+    let dueDateInput = document.createElement('input');
+    dueDateLabel.textContent = 'Due Date'
+    let importanceLabel = document.createElement('label');
+    let importanceInput = document.createElement('input');
+    importanceLabel.textContent = 'Importance'
+    let createTodoButton = document.createElement('button');
+    createTodoButton.textContent = "Create Todo";
+
+    form.appendChild(aboutLabel);
+    form.appendChild(aboutInput);
+    form.appendChild(dueDateLabel);
+    form.appendChild(dueDateInput);
+    form.appendChild(importanceLabel);
+    form.appendChild(importanceInput);
+    form.appendChild(createTodoButton);
+
+    createTodoButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      let projects = JSON.parse(localStorage.getItem('projects'))
+
+      projects[projectIndex].toDos.push(todoFactory(aboutInput.value, dueDateInput.value, importanceInput.value))
+      
+      if (aboutInput.value != '' && dueDateInput != '' && importanceInput != ''){
+        localStorage.setItem('projects', JSON.stringify(projects))
+      
+        resetIndexLayout(); 
+      }
+    })
+
+    newTodoCreator.appendChild(form)
+    return newTodoCreator
+  }
+
+  return { projectCreator, todoCreator, resetIndexLayout }
 })()
 
-export default function createProject() {
+export function createProject() {
   return creationToolCreator.projectCreator()
+}
+
+export function todoCreator(projectIndex) {
+  return creationToolCreator.todoCreator(projectIndex)
+}
+
+export function resetIndexLayout() {
+  return creationToolCreator.resetIndexLayout()
 }

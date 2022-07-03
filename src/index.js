@@ -1,5 +1,5 @@
 import './style.css';
-import createLayout from './layoutCreator';
+import { createLayout } from './layoutCreator';
 
 const contentCreator = (() => {
     const body = document.querySelector('body');

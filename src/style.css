@@ -3,6 +3,11 @@
     padding: 0;
 }
 
+body {
+    display: flex;
+    justify-content: center;
+}
+
 .center {
     display: flex;
     justify-content: center;
@@ -33,4 +38,27 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.todo-div {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.project-div {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: flex;
+}
+
+.project-div button {
+    margin-left: 500px;
+}
+
+.todo-creator form {
+    display: flex;
+    gap: 30px;
 }

@@ -1,5 +1,5 @@
-import createProject from './creationToolCreator';
-import { makeProjectDiv } from './createContent';
+import { createProject, todoCreator } from './creationToolCreator';
+import { makeProjectDiv, makeTodoDiv } from './createContent';
 
 const indexContentCreator = (() => {
   const createHeader = () => {
@@ -16,11 +16,12 @@ const indexContentCreator = (() => {
       let i = 0
       projects.forEach(project => {
         area.appendChild(makeProjectDiv(project, i))
+        area.appendChild(todoCreator(i))
         if (projects[i].toDos.length > 0) {
           let f = 0
           while (projects[i].toDos.length > f) {
-            let haha = document.createElement('p')
-            haha.textContent = projects[i].toDos[f] 
+            let haha = document.createElement('div')
+            haha = makeTodoDiv(projects[i].toDos[f], i, f)
             area.appendChild(haha)
             f += 1
           }
